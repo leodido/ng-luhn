@@ -1,0 +1,14 @@
+# General
+*.log
+
+# Node
+/node_modules
+
+# Bower
+/bower_components
+
+# IDEs
+/.idea
+
+# Test
+/coverage

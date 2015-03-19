@@ -1,0 +1,65 @@
+{
+  "name": "ng-luhn",
+  "version": "0.0.0",
+  "description": "Fastest implementation of the Luhn algorithm as an AngularJS service",
+  "main": "luhn.min.js",
+  "author": {
+    "name": "Leo Di Donato",
+    "email": "leodidonato@gmail.com",
+    "url": "http://git.io/leodido"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/leodido/ng-luhn.git"
+  },
+  "homepage": "http://github.com/leodido/ng-luhn",
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "chai": "^2.1.2",
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-bump": "^0.2.2",
+    "gulp-closure-compiler": "^0.2.17",
+    "gulp-debug": "^2.0.1",
+    "gulp-gjslint": "^0.1.4",
+    "gulp-help": "^1.3.3",
+    "gulp-util": "~3.0.4",
+    "minimist": "^1.1.0",
+    "node.extend": "^1.1.3",
+    "run-sequence": "^1.0.2",
+    "karma": "^0.12.31",
+    "karma-mocha": "^0.1.10",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^0.2.7",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-firefox-launcher": "^0.1.4",
+    "karma-phantomjs-launcher": "^0.1.4"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/.bin/bower install",
+    "product": "./node_modules/.bin/gulp build --env=production --banner",
+    "develop": "./node_modules/.bin/gulp build --env=development --banner",
+    "release": "npm run develop && npm run product",
+    "tests": "./node_modules/karma/bin/karma start karma.conf.js"
+  },
+  "keywords": [
+    "creditcard",
+    "credit card",
+    "card",
+    "payment card",
+    "credit card number",
+    "card number",
+    "luhn",
+    "check",
+    "checksum",
+    "service",
+    "PAN",
+    "angular",
+    "angularjs",
+    "closure"
+  ],
+  "directories": {
+    "source": "./src"
+  }
+}

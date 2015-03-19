@@ -1,0 +1,55 @@
+{
+  "name": "ng-luhn",
+  "version": "0.0.0",
+  "description": "Fastest implementation of the Luhn algorithm as an AngularJS service",
+  "authors": [
+    "Leo Di Donato <leodidonato@gmail.com> (http://git.io/leodido)"
+  ],
+  "main": [
+    "luhn.min.js",
+    "dev.luhn.min.js"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/leodido/ng-luhn.git"
+  },
+  "homepage": "http://github.com/leodido/ng-luhn",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "gulpfile.js",
+    "bower.json",
+    "package.json",
+    "gjslint.conf",
+    "src"
+  ],
+  "dependencies": {
+    "angular": "~1.3.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.3.0",
+    "closure-library": "git@github.com:google/closure-library.git#8973559e3559c4e9ecd0bf89f219db73ad92f1cc",
+    "closure-compiler": "http://dl.google.com/closure-compiler/compiler-latest.tar.gz",
+    "closure-angularjs-externs": "https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-1.3.js",
+    "closure-angularjs-q_templated-externs": "https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-1.3-q_templated.js",
+    "closure-angularjs-http-promise_templated-externs": "https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-1.3-http-promise_templated.js"
+  },
+  "keywords": [
+    "creditcard",
+    "credit card",
+    "card",
+    "payment card",
+    "credit card number",
+    "card number",
+    "luhn",
+    "check",
+    "checksum",
+    "service",
+    "PAN",
+    "angular",
+    "angularjs",
+    "closure"
+  ]
+}
