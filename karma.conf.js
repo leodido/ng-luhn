@@ -1,6 +1,6 @@
 module.exports = function(config) {
   'use strict';
-  config.set({
+  var cfg = {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
 
@@ -52,10 +52,23 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS', 'Chrome', 'Firefox'],
+    browsers: ['PhantomJS', 'Firefox', 'Chrome', 'ChromeCanary'],
+
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
 
     // continuous integration mode: if true, karma captures browsers, runs the tests and exits
     singleRun: true
-  });
+  };
+
+  if (process.env.TRAVIS) {
+    cfg.browsers = ['Chrome_travis_ci'];
+  }
+
+  config.set(cfg);
 };
 

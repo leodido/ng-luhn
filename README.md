@@ -14,22 +14,22 @@ Instructions
 
 The `luhn` service is a constructor with only a (privileged) method (i.e., `check()`).
 
-Using it is very simple: 
+Using it is very simple.
 
-1. load AngularJS and this little library
+1. Load AngularJS and this little library
 
     ```html
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="https://cdn.rawgit.com/leodido/ng-luhn/master/luhn.min.js"></script>
     ```
 
-2. declare your AngularJS application with `leodido.luhn` in the dependencies array
+2. Declare your AngularJS application with `leodido.luhn` in the dependencies array
 
     ```javascript
     var app = angular.module('myModule', ['leodido.luhn']);
     ````
 
-3. inject the service into you AngularJS code and call its `check` method
+3. Inject the service into you AngularJS code and call its `check` method
 
     ```javascript
     app.controller('NumberController', ['luhn', function(luhn) {
@@ -55,7 +55,7 @@ Otherwise you can grab `*.luhn.js` file/s in the repository root or use rawgit.
 References
 -------
 
-* Fastest? Yes, check it out yourself [here](https://jsperf.com/credit-card-validator/19).
+* Fastest? Yes, check yourself: [jsperf](https://jsperf.com/credit-card-validator/19).
 
 ---
 
