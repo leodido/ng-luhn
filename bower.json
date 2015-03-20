@@ -1,6 +1,6 @@
 {
   "name": "ng-luhn",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Fastest implementation of the Luhn algorithm as an AngularJS service",
   "authors": [
     "Leo Di Donato <leodidonato@gmail.com> (http://git.io/leodido)"
