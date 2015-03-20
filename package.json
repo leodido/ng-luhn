@@ -1,6 +1,6 @@
 {
   "name": "ng-luhn",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Fastest implementation of the Luhn algorithm as an AngularJS service",
   "main": "luhn.min.js",
   "author": {
@@ -41,7 +41,7 @@
     "product": "./node_modules/.bin/gulp build --env=production --banner",
     "develop": "./node_modules/.bin/gulp build --env=development --banner",
     "release": "npm run develop && npm run product",
-    "tests": "./node_modules/karma/bin/karma start karma.conf.js"
+    "test": "./node_modules/karma/bin/karma start karma.conf.js"
   },
   "keywords": [
     "creditcard",

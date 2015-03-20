@@ -21,7 +21,7 @@ leodido.service.Luhn = function() {
       ];
   // Privileged
   /**
-   * Verify the validity of a credit card number by means of the luhn check.
+   * Verify the checksum digit of a number by means of the luhn algorithm.
    *
    * @param {!string} number The credit card number to verify
    * @return {!boolean}
