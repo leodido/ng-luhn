@@ -1,7 +1,7 @@
 Luhn algorithm
 --------------
 
-[![Bower](https://img.shields.io/bower/v/ng-luhn.svg?style=flat-square)]()
+[![Bower](https://img.shields.io/bower/v/ng-luhn.svg?style=flat-square)]() [![Travis branch](https://img.shields.io/travis/leodido/ng-luhn/master.svg?style=flat-square)](https://travis-ci.org/leodido/ng-luhn)
 
 **AngularJS service exposing the fastest implementation of [Luhn algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm)**.
 

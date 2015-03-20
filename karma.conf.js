@@ -37,6 +37,13 @@ module.exports = function(config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress', 'coverage'],
 
+    coverageReporter: {
+      dir: 'coverage',
+      reporters: [
+        { type: 'lcov', subdir: 'report-lcov' }
+      ]
+    },
+
     // web server port
     port: 9876,
 
@@ -52,10 +59,10 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS', 'Firefox', 'Chrome', 'ChromeCanary'],
+    browsers: ['PhantomJS', 'Firefox'],
 
     customLaunchers: {
-      Chrome_travis_ci: {
+      ChromeTravisCI: {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
@@ -66,7 +73,9 @@ module.exports = function(config) {
   };
 
   if (process.env.TRAVIS) {
-    cfg.browsers = ['Chrome_travis_ci'];
+    cfg.browsers.push('ChromeTravisCI');
+  } else {
+    cfg.browsers.push('Chrome');
   }
 
   config.set(cfg);
