@@ -231,7 +231,6 @@ gulp.task('karma', 'Run karma tests', [], function(done) {
     config.captureTimeout = 0;
     config.browsers = Object.keys(saucelabsConfig.launchers);
     if (process.env.TRAVIS) {
-      config.sauceLabs.startConnect = false;
       config.sauceLabs.build = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER;
       config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
     }
