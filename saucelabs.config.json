@@ -1,0 +1,13 @@
+{
+  "name": "leodido/ng-luhn",
+  "screenshots": false,
+  "timeout": 120000,
+  "launchers": {
+    "osx10.9_iphone7.1": {
+      "base": "SauceLabs",
+      "browserName": "iphone",
+      "platform": "OS X 10.9",
+      "version": "7.1"
+    }
+  }
+}

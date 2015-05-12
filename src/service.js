@@ -35,7 +35,7 @@ leodido.service.Luhn = function() {
         mul = 0,
         sum = 0;
     while (len--) {
-      sum += prods[mul][parseInt(number.charAt(len), 10)];
+      sum += prods[mul][parseInt(number.charAt(len), 10)]; // FIXME: number.charAt(len) >> 0 should be faster
       mul ^= 1;
     }
     return sum % 10 === 0 && sum > 0;

@@ -37,6 +37,10 @@
     "closure-angularjs-http-promise_templated-externs": "https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-1.3-http-promise_templated.js"
   },
   "keywords": [
+    "luhn algorithm",
+    "validator",
+    "validation",
+    "credit card validation",
     "creditcard",
     "credit card",
     "card",

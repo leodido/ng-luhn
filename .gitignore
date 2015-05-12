@@ -12,3 +12,5 @@
 
 # Test
 /coverage
+
+*.local.json

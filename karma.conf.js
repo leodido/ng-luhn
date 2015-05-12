@@ -1,5 +1,6 @@
 module.exports = function(config) {
   'use strict';
+
   var cfg = {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
@@ -35,12 +36,12 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage', 'saucelabs'],
 
     coverageReporter: {
       dir: 'coverage',
       reporters: [
-        { type: 'lcov', subdir: 'report-lcov' }
+        { type: 'lcov', subdir: '.' }
       ]
     },
 
@@ -59,25 +60,11 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS', 'Firefox'],
-
-    customLaunchers: {
-      ChromeTravisCI: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    },
+    browsers: ['PhantomJS', 'Firefox', 'Chrome'],
 
     // continuous integration mode: if true, karma captures browsers, runs the tests and exits
     singleRun: true
   };
 
-  if (process.env.TRAVIS) {
-    cfg.browsers.push('ChromeTravisCI');
-  } else {
-    cfg.browsers.push('Chrome');
-  }
-
   config.set(cfg);
 };
-

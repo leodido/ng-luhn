@@ -6,6 +6,10 @@ var gulp = require('gulp'),
     closurize = require('gulp-closure-compiler'),
     gjslint = require('gulp-gjslint'),
     gutil = require('gulp-util'),
+    path = require('path'),
+    fs = require('fs'),
+    karma = require('karma').server,
+    coveralls = require('gulp-coveralls'),
     minimist = require('minimist'),
     del = require('del'),
     extend = require('node.extend'),
@@ -13,14 +17,15 @@ var gulp = require('gulp'),
     allowedLevels = ['major', 'minor', 'patch', 'prerelease'],
     allowedEnvironments = ['production', 'development'],
     knownArgs = {
-      'boolean': ['banner'],
+      'boolean': ['banner', 'saucelabs'],
       'string': ['env', 'level'],
       'default': {
         env: process.env.NODE_ENV || allowedEnvironments[0],
         banner: false,
+        saucelabs: false,
         level: allowedLevels[2]
       },
-      'alias': { e: 'env', b: 'banner', l: 'level' }
+      'alias': { e: 'env', b: 'banner', l: 'level', s: 'saucelabs' }
     };
 
 
@@ -29,6 +34,7 @@ var gulp = require('gulp'),
  * @property {!boolean} banner
  * @property {!string} env
  * @property {!string} level
+ * @property {!boolean} saucelabs
  */
 var GulpArguments;
 
@@ -36,6 +42,7 @@ var GulpArguments;
 /** @type {GulpArguments} */
 var args = minimist(process.argv.slice(2), knownArgs),
     bannerHelp = { options: {} },
+    saucelabsHelp = { options: {} },
     environmentsHelp = { options: {} },
     levelsHelp = { options: {} };
 var getLevel = function() {
@@ -61,6 +68,12 @@ environmentsHelp.options['env=' + allowedEnvironments.join('|')] = 'Kind of buil
  * @type {string}
  */
 bannerHelp.options.banner = 'Prepend banner to the built file';
+
+
+/**
+ * @type {string}
+ */
+saucelabsHelp.options.saucelabs = 'Remotely execute tests on SauceLabs';
 
 
 /**
@@ -186,4 +199,47 @@ gulp.task('build', 'Build the library', [], function(cb) {
   sequence(['clean', 'lint'], 'compile', cb);
 }, {
   options: extend(bannerHelp.options, environmentsHelp.options)
+});
+
+gulp.task('karma', 'Run karma tests', [], function(done) {
+  var config = {
+    configFile: path.join(__dirname, 'karma.conf.js'),
+    singleRun: true
+  };
+  if (args.saucelabs) {
+    // Check that credentials exists
+    if (!process.env.SAUCE_USERNAME && !process.env.SAUCE_ACCESS_KEY) {
+      // Try to fallback to locale saucelabs credential file
+      if (!fs.existsSync('saucelabs.local.json')) {
+        gutil.log('Create environment variables or a saucelabs.local.json with your credentials.');
+        process.exit(1);
+      } else {
+        var saucelabsCredentials = require('./saucelabs.local');
+        process.env.SAUCE_USERNAME = saucelabsCredentials.username;
+        process.env.SAUCE_ACCESS_KEY = saucelabsCredentials.accessKey;
+      }
+    }
+    // Augment karma config for saucelabs
+    var saucelabsConfig = require('./saucelabs.config.json');
+    config.browserNoActivityTimeout = saucelabsConfig.timeout;
+    config.customLaunchers = saucelabsConfig.launchers;
+    config.sauceLabs = {
+      testName: saucelabsConfig.name,
+      recordScreenshots: saucelabsConfig.screenshots,
+      startConnect: true
+    };
+    config.captureTimeout = 0;
+    config.browsers = Object.keys(saucelabsConfig.launchers);
+    if (process.env.TRAVIS) {
+      config.sauceLabs.startConnect = false;
+      config.sauceLabs.build = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER;
+      config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
+    }
+  }
+  karma.start(config, done);
+}, saucelabsHelp);
+
+gulp.task('coveralls', false, [], function() {
+  return gulp.src('coverage/lcov.info')
+      .pipe(coveralls());
 });
