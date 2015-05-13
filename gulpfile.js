@@ -223,15 +223,19 @@ gulp.task('karma', 'Run karma tests', [], function(done) {
     var saucelabsConfig = require('./saucelabs.config.json');
     config.browserNoActivityTimeout = saucelabsConfig.timeout;
     config.customLaunchers = saucelabsConfig.launchers;
+    config.browserDisconnectTimeout = config.customLaunchers.length * 2500;
+    config.browserDisconnectTolerance = Math.floor(config.customLaunchers.length * 0.5);
+    config.browserNoActivityTimeout = config.customLaunchers.length * 60 * 1000;
+    config.captureTimeout = 0; // config.customLaunchers.length * 60 * 1000;
     config.sauceLabs = {
       testName: saucelabsConfig.name,
       recordScreenshots: saucelabsConfig.screenshots,
       startConnect: true
     };
-    config.captureTimeout = 0;
     config.browsers = Object.keys(saucelabsConfig.launchers);
     if (process.env.TRAVIS) {
-      config.sauceLabs.build = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER;
+      config.logLevel = config.LOG_DEBUG;
+      config.sauceLabs.build = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')';
       config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
     }
   }
