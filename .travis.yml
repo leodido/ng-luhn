@@ -1,7 +1,12 @@
 language: node_js
 
+addons:
+  sauce_connect: true
+
 # saucelabs encrypted credentials
 env:
+  matrix:
+    - JOB=unit
   global:
     - secure: "Fo9QQrpiXUbR12nSZnuQcKctWc2uDhgTIi3i4q9GHTX7h4aRW2EQQ2xDoYUxrn9zrX0NBpV7CW+1PO5xlmke3u4c5QFdV5k/b5izKVYFHBtAdoWGpsWb4TmNnpu3Tiald9npjk07mKlpWHvO0M7AjLcR49V6kLmXlDLmwzC3Z8M="
     - secure: "Kn1eCItJly69ZRl5lU7pUlHEJ1zd5MXQlKCGBXmUvrShoWyV1qz3rz/aQ1u+nLrQfmw3gqXj8TiewfuRca1sGnvrarlaoYCQU8nn4d2d1TKe6oaoBwVdFJ/oLGDPqpN0apfv7jJ2T7vK82dpnJwPagpAncI0m7tgUYgV+DFLezg="
